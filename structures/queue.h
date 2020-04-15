@@ -19,17 +19,54 @@ public:
 	~queue();   		
 
 	void push(T);
-	int pop();
-	int front();
-    int back();
+	void pop();
+	T front();
+    T back();
 
 	int size();
 	bool empty();
 };
 
+//--------------------------------------------------------------------
 template<typename T>
 queue<T>::queue(int size){
     cout << size << endl;
+}
+
+template<typename T>
+queue<T>::~queue(){
+    
+}
+
+//--------------------------------------------------------------------
+template<typename T>
+void queue<T>::push(T item){
+
+}
+template<typename T>
+void queue<T>::pop(){
+
+}
+
+template<typename T>
+T queue<T>::front(){
+
+}
+
+template<typename T>
+T queue<T>::back(){
+
+}
+
+//--------------------------------------------------------------------
+template<typename T>
+int queue<T>::size(){
+
+}
+
+template<typename T>
+bool queue<T>::empty(){
+
 }
 
 #endif
