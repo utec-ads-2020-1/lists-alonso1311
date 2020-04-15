@@ -11,23 +11,23 @@ int main(int argc, char *argv[]) {
 
     //Tester::execute();
     
-    /*
+    /*    
     //-STACK test
-    auto* stack1 = new stack<int>();
+    auto* stack1 = new stack<int>(3);
     stack1->push(3);
     stack1->push(13);
     stack1->push(10);
+    stack1->pop();
     stack1->push(6);
     stack1->pop();
     stack1->push(100);
     stack1->push(10);
-    stack1->pop();
     stack1->print();
     cout << "Peak: " << stack1->peak() << endl;
     cout << "Size: " << stack1->size() << endl;
 
     delete stack1;
-    */
+    */ 
     
     return EXIT_SUCCESS;
 }

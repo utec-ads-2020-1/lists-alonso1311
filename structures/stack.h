@@ -23,8 +23,21 @@ public:
 	int size();
 	bool empty();
 
+    //-Extra functions
     void print();
+    void reserve();
 };
+
+template<typename T>
+void stack<T>::reserve(){
+    capacity += MAX;
+    T* temp_data = new T[capacity];
+    for(int i = 0; i < top; ++i)
+        temp_data[i] = data[i];
+
+    delete[] data;
+    data = temp_data;
+}
 
 //---------------------------------------------------
 template<typename T>
@@ -42,16 +55,9 @@ stack<T>::~stack(){
 //-----------------------------------------------
 template<typename T>
 void stack<T>::push(T item){
-    if(top == capacity){
-        capacity += MAX;
-        T* temp_data = new T[capacity];
-        for(int i = 0; i < top; ++i)
-            temp_data[i] = data[i];
-
-        delete[] data;
-        data = temp_data;
-        delete[] temp_data;
-    }
+    if(top == capacity)
+        reserve();
+    
     data[top] = item;       
     top++;
 }
