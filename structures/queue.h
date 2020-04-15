@@ -1,6 +1,8 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+#include<iostream>
+
 using namespace std;
 
 #define MAX 1000 
@@ -13,8 +15,8 @@ class queue {
 	int capacity;
 
 public:
-	stack(int size = MAX);
-	~stack();   		
+	queue(int size = MAX);
+	~queue();   		
 
 	void push(T);
 	int pop();
@@ -24,5 +26,10 @@ public:
 	int size();
 	bool empty();
 };
+
+template<typename T>
+queue<T>::queue(int size){
+    cout << size << endl;
+}
 
 #endif
