@@ -47,6 +47,7 @@ int main(int argc, char *argv[]) {
     delete queue1;
     */
 
+    /*
     //-FORWARD test
     auto* forward1 = new ForwardList<int>();
     forward1->push_back(3); 
@@ -89,7 +90,7 @@ int main(int argc, char *argv[]) {
     forward1->print();
     cout << "Front: " << forward1->front() << endl;
     cout << "Back: " << forward1->back() << endl;
-    
+    */
 
     return EXIT_SUCCESS;
 }

@@ -110,8 +110,11 @@ void ForwardList<T>::pop_back(){
 template<typename T>
 T ForwardList<T>::operator[](int index){
     auto temp = this->head; 
-    for(int i = 0; i < index; ++i){
+    int i = 0;
+    
+    while(i != index){
         temp = temp->next;     
+        ++i;
     }
     
     return temp->data;
@@ -128,17 +131,15 @@ void ForwardList<T>::sort(){
     auto temp = this->head;
     T max;
 
-    for(int i = 0; i < this->nodes - 1; ++i){
-        for(int j = i + 1; j < this->nodes; ++j){
+    for(int i = 0; i < this->nodes; ++i){
+        while(temp->next != nullptr){
             if(temp->data > temp->next->data){
                 max = temp->data;
                 temp->data = temp->next->data;
                 temp->next->data = max;
-                temp = temp->next;
-            } else {
-                temp = temp->next;
-            }
-        } 
+            } 
+            temp = temp->next;
+        }
         temp = this->head;
     }
 }

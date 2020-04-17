@@ -46,42 +46,132 @@ CircularLinkedList<T>::CircularLinkedList() : List<T>(){}
 
 template<typename T>
 void CircularLinkedList<T>::push_front(T item){
+    auto new_node = new Node<T>(item);
 
+    if(this->empty()){
+        this->initialize(this->head, this->tail, new_node);
+    } else {
+        new_node->next = this->head;
+        this->head = new_node;
+    }
+
+    this->tail->next = this->head;
+    this->nodes++;
 }
 
 template<typename T>
 void CircularLinkedList<T>::push_back(T item){
+    auto new_node = new Node<T>(item);
 
+    if(this->empty()){
+        this->initialize(this->head, this->tail, new_node);
+    } else {
+        this->tail->next = new_node;
+        this->tail = new_node;
+    }
+    
+    this->tail->next = this->head;
+    this->nodes++;
 }
 
 template<typename T>
 void CircularLinkedList<T>::pop_front(){
+    if(this->empty()){
+        cerr << name() + " is empty\n";
+    } else if(this->nodes == 1){
+        clear();
+    } else {
+        auto temp = this->head;
+        this->head = this->head->next;
+        delete temp;
 
+        this->tail->next = this->head;
+        this->nodes--;
+    }
 }
 
 template<typename T>
 void CircularLinkedList<T>::pop_back(){
+    if(this->empty()){
+        cerr << name() + " is empty\n";
+    } else if(this->nodes == 1){
+        clear();
+    } else {
+        auto temp = this->head;
+        while(temp->next != this->tail){
+            temp = temp->next;
+        }
+
+        temp->next = this->tail->next;
+        delete this->tail;
+        this->tail =  temp;
+
+        this->tail->next = this->head;
+        this->nodes--;
+    }
 
 }
 
 template<typename T>
 T CircularLinkedList<T>::operator[](int index){
+    auto temp = this->head;
+    int i = 0;
 
+    while(i != index){
+        temp = temp->next;
+        ++i;
+    }
+
+    return temp->data;
 }
 
 template<typename T>
 void CircularLinkedList<T>::clear(){
+    auto temp = this->head;
+    Node<T>* to_delete;
 
+    for(int i = 0; i < this->nodes; ++i){
+        to_delete = temp; 
+        temp = temp->next;
+        delete to_delete;
+    }
+
+    this->initialize_constructor();
 }
 
 template<typename T>
 void CircularLinkedList<T>::sort(){
-
+    auto temp = this->head;
+    T max;
+    
+    for(int i = 0; i < this->nodes; ++i){
+        while(temp->next != this->head){
+            if(temp->data > temp->next->data){
+                max = temp->data;
+                temp->data = temp->next->data;
+                temp->next->data = max;
+            }
+            temp = temp->next;
+        }
+        temp = this->head;
+    }
 }
 
 template<typename T>
 void CircularLinkedList<T>::reverse(){
+    auto temp = this->head;
+    Node<T>* temp_next = nullptr, * temp_prev = nullptr;
 
+    while(temp->next != this->head){
+        temp_next = temp->next;
+        temp->next = temp_prev;
+        temp_prev = temp;
+        temp = temp->next;
+    }
+
+    this->tail = this->head;
+    this->head = temp_prev;
+    this->tail->next = this->head;
 }
 
 //-------------------------------------------------------------

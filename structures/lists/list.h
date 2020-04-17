@@ -68,7 +68,7 @@ T List<T>::front(){
     if(empty()){
         throw "Empty";
     } 
-    return tail->data;
+    return head->data;
 }
 
 template<typename T>
