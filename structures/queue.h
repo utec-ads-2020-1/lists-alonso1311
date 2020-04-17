@@ -4,6 +4,7 @@
 #include"header.h"
 
 #define MAX 1000 
+#define RESIZE 10 
 
 // TODO: Implement all methods
 template <typename T>
@@ -11,6 +12,10 @@ class queue {
 	T* data;
 	int top;
 	int capacity;
+    int to_resize;
+
+    //-Extra functions
+    void resize();
 
 public:
 	queue(int size = MAX);
@@ -25,9 +30,22 @@ public:
 	bool empty();
 
     //-Extra functions
-    void reserve();
     void print();
 };
+
+//----------------EXTRA FUNCTIONS------------------------------------
+template<typename T>
+void queue<T>::resize(){
+    capacity += to_resize;
+    T* temp_data = new T[capacity];
+
+    for(int i = 0; i < top; ++i)
+        temp_data[i] = data[i];
+
+    delete[] data;
+    data = temp_data;
+    to_resize *= 2;
+}
 
 //--------------------------------------------------------------------
 template<typename T>
@@ -35,6 +53,7 @@ queue<T>::queue(int size){
     capacity = size;
     top = 0;
     data = new T[capacity];
+    to_resize = RESIZE;
 }
 
 template<typename T>
@@ -46,7 +65,7 @@ queue<T>::~queue(){
 template<typename T>
 void queue<T>::push(T item){
     if(top == capacity)
-        reserve();
+        resize();
 
     data[top] = item;
     top++;
@@ -85,18 +104,6 @@ bool queue<T>::empty(){
 }
 
 //----------------EXTRA FUNCTIONS------------------------------------
-template<typename T>
-void queue<T>::reserve(){
-    capacity += MAX;
-    T* temp_data = new T[capacity];
-
-    for(int i = 0; i < top; ++i)
-        temp_data[i] = data[i];
-
-    delete[] data;
-    data = temp_data;
-}
-
 template<typename T>
 void queue<T>::print(){
     for(int i = 0; i < top; ++i)

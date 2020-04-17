@@ -12,7 +12,7 @@ class List {
         int nodes;
 
     public:
-        List() : head(nullptr), tail(nullptr), nodes(0) {};
+        List();
         ~List();
 
         virtual T front() = 0;
@@ -29,5 +29,14 @@ class List {
         virtual void reverse() = 0;
         virtual string name() = 0;
 };
+
+template<typename T>
+List<T>::List() : head(nullptr), tail(nullptr), nodes(0) {};
+
+template<typename T>
+List<T>::~List(){
+    delete head;
+    delete tail;
+}
 
 #endif

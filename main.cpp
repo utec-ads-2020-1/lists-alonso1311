@@ -2,6 +2,7 @@
 //#include "test/tester.h"
 #include"structures/stack.h"
 #include"structures/queue.h"
+//#include"structures/lists/linked.h"
 
 int main(int argc, char *argv[]) {
     cout << "===========================================================" << endl;
@@ -10,7 +11,7 @@ int main(int argc, char *argv[]) {
 
     //Tester::execute();
     
-    /*    
+        
     //-STACK test
     auto* stack1 = new stack<int>(3);
     stack1->push(3);
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
     cout << "Size: " << stack1->size() << endl;
 
     delete stack1;
-    */ 
+     
 
     /*
     //-QUEUE test
@@ -37,7 +38,7 @@ int main(int argc, char *argv[]) {
     queue1->push(1);
     queue1->pop();
     queue1->push(10);
-    queue1->push(6);
+    queue1->push(7);
     queue1->print();
     cout << "Front: " << queue1->front() << endl;
     cout << "Back: " << queue1->back() << endl;

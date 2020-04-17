@@ -8,27 +8,26 @@
 template <typename T>
 class LinkedList : public List<T> {
     public:
-        LinkedList() : List<T>() {}
+        LinkedList();
 
-        T front();
-        T back();
-        void push_front(T);
-        void push_back(T);
-        void pop_front();
-        void pop_back();
-        T operator[](int);
-        bool empty();
-        int size();
-        void clear();
-        void sort();
-        void reverse();
+        T front() override;
+        T back() override;
+        void push_front(T) override;
+        void push_back(T) override;
+        void pop_front() override;
+        void pop_back() override;
+        T operator[](int) override;
+        bool empty() override;
+        int size() override;
+        void clear() override;
+        void sort() override;
+        void reverse() override;
 
         BidirectionalIterator<T> begin();
 	    BidirectionalIterator<T> end();
 
-        string name() {
-            return "Linked List";
-        }
+        string name();
+
 
         /**
          * Merges x into the list by transferring all of its elements at their respective 
@@ -42,5 +41,91 @@ class LinkedList : public List<T> {
         */
         void merge(LinkedList<T>&);
 };
+
+template<typename T>
+LinkedList<T>::LinkedList() : List<T>(){}
+
+template<typename T>
+T LinkedList<T>::front(){
+    return (empty() == true) ? this->nodes : this->nodes-1;
+}
+
+template<typename T>
+T LinkedList<T>::back(){
+    return (empty() == true) ? this->nodes : this->nodes-1;
+}
+
+template<typename T>
+void LinkedList<T>::push_front(T item){
+
+}
+
+template<typename T>
+void LinkedList<T>::push_back(T item){
+
+}
+
+template<typename T>
+void LinkedList<T>::pop_front(){
+
+}
+
+template<typename T>
+void LinkedList<T>::pop_back(){
+
+}
+
+template<typename T>
+T LinkedList<T>::operator[](int index){
+
+}
+
+template<typename T>
+bool LinkedList<T>::empty(){
+    return (this->head == nullptr) ? true : false;
+}
+
+template<typename T>
+int LinkedList<T>::size(){
+    return this->nodes;
+}
+
+template<typename T>
+void LinkedList<T>::clear(){
+
+}
+
+template<typename T>
+void LinkedList<T>::sort(){
+
+}
+
+template<typename T>
+void LinkedList<T>::reverse(){
+
+}
+
+//-------------------------------------------------------------
+template<typename T>
+BidirectionalIterator<T> LinkedList<T>::begin(){
+
+}
+
+template<typename T>
+BidirectionalIterator<T> LinkedList<T>::end(){
+
+}
+
+//-------------------------------------------------------------
+template<typename T>
+string LinkedList<T>::name(){
+    return "Linked List";
+}
+
+//-------------------------------------------------------------
+template<typename T>
+void LinkedList<T>::merge(LinkedList<T>& new_LinkedList){
+
+}
 
 #endif
