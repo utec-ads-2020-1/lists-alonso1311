@@ -1,7 +1,9 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include"header.h"
+#include<iostream>
+
+using namespace std;
 
 #define MAX 1000 
 #define RESIZE 10 

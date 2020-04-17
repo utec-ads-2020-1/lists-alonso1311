@@ -11,12 +11,23 @@ struct Node {
     Node<T>* next;
     Node<T>* prev;
 
+    Node(T);
+
     void killSelf();
 };
 
 template<typename T>
-void Node<T>::killSelf(){
+Node<T>::Node(T _data) : data{_data} {
+    next = nullptr;
+    prev = nullptr;
+}
 
+template<typename T>
+void Node<T>::killSelf(){
+    if(next){
+        next->killSelf();
+    }
+    delete this;
 }
 
 #endif

@@ -8,7 +8,7 @@
 template <typename T>
 class CircularLinkedList : public List<T> {
     public:
-        CircularLinkedList() : List<T>() {}
+        CircularLinkedList();
 
         T front();
         T back();
@@ -26,9 +26,7 @@ class CircularLinkedList : public List<T> {
         BidirectionalIterator<T> begin();
 	    BidirectionalIterator<T> end();
 
-        string name() {
-            return "Circular Linked List";
-        }
+        string name();
 
         /**
          * Merges x into the list by transferring all of its elements at their respective 
@@ -42,5 +40,91 @@ class CircularLinkedList : public List<T> {
         */
         void merge(CircularLinkedList<T>&);
 };
+
+template<typename T>
+CircularLinkedList<T>::CircularLinkedList() : List<T>(){}
+
+template<typename T>
+T CircularLinkedList<T>::front(){
+    return (empty() == true) ? this->nodes : this->nodes-1;
+}
+
+template<typename T>
+T CircularLinkedList<T>::back(){
+    return (empty() == true) ? this->nodes : this->nodes-1;
+}
+
+template<typename T>
+void CircularLinkedList<T>::push_front(T item){
+
+}
+
+template<typename T>
+void CircularLinkedList<T>::push_back(T item){
+
+}
+
+template<typename T>
+void CircularLinkedList<T>::pop_front(){
+
+}
+
+template<typename T>
+void CircularLinkedList<T>::pop_back(){
+
+}
+
+template<typename T>
+T CircularLinkedList<T>::operator[](int index){
+
+}
+
+template<typename T>
+bool CircularLinkedList<T>::empty(){
+    return (this->head == nullptr) ? true : false;
+}
+
+template<typename T>
+int CircularLinkedList<T>::size(){
+    return this->nodes;
+}
+
+template<typename T>
+void CircularLinkedList<T>::clear(){
+
+}
+
+template<typename T>
+void CircularLinkedList<T>::sort(){
+
+}
+
+template<typename T>
+void CircularLinkedList<T>::reverse(){
+
+}
+
+//-------------------------------------------------------------
+template<typename T>
+BidirectionalIterator<T> CircularLinkedList<T>::begin(){
+
+}
+
+template<typename T>
+BidirectionalIterator<T> CircularLinkedList<T>::end(){
+
+}
+
+//-------------------------------------------------------------
+template<typename T>
+string CircularLinkedList<T>::name(){
+    return "Circular List";
+}
+
+//-------------------------------------------------------------
+template<typename T>
+void CircularLinkedList<T>::merge(CircularLinkedList<T>& new_CircularLinkedList){
+
+}
 
 #endif
