@@ -93,7 +93,7 @@ int List<T>::size(){
 template<typename T>
 void List<T>::print(){
     if(empty())
-        cerr << name() + " is empty\n";
+        cerr << "Can't print because " + name() + " is empty\n";
     else {
         auto temp = head;
         for(int i = 0; i < nodes; ++i){

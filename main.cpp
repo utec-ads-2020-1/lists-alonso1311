@@ -3,6 +3,7 @@
 //#include"structures/queue.h"
 //#include"structures/lists/linked.h"
 #include"structures/lists/forward.h"
+#include"structures/lists/circular.h"
 
 int main(int argc, char *argv[]) {
     cout << "===========================================================" << endl;
@@ -47,7 +48,7 @@ int main(int argc, char *argv[]) {
     delete queue1;
     */
 
-    /*
+    
     //-FORWARD test
     auto* forward1 = new ForwardList<int>();
     forward1->push_back(3); 
@@ -85,11 +86,46 @@ int main(int argc, char *argv[]) {
     forward1->print();
     cout << "Front: " << forward1->front() << endl;
     cout << "Back: " << forward1->back() << endl;
-    forward1->push_back(7); 
-    forward1->push_front(11); 
-    forward1->print();
-    cout << "Front: " << forward1->front() << endl;
-    cout << "Back: " << forward1->back() << endl;
+
+    /*
+    //-CIRCULAR test
+    auto* circular1 = new CircularLinkedList<int>(); 
+    circular1->push_back(3); 
+    circular1->push_front(5); 
+    circular1->push_front(1); 
+    circular1->push_back(10); 
+    circular1->print();
+    cout << "Front: " << circular1->front() << endl;
+    cout << "Back: " << circular1->back() << endl;
+    circular1->pop_back(); 
+    circular1->pop_back(); 
+    circular1->print();
+    cout << "Front: " << circular1->front() << endl;
+    cout << "Back: " << circular1->back() << endl;
+    circular1->pop_front(); 
+    circular1->print();
+    circular1->pop_front(); 
+    circular1->print();
+    circular1->push_back(5); 
+    circular1->push_front(8); 
+    circular1->push_front(1); 
+    circular1->push_back(12);
+    circular1->print();
+    circular1->clear();
+    circular1->print();
+    circular1->push_back(4); 
+    circular1->push_front(1); 
+    circular1->push_front(8); 
+    circular1->push_back(2);
+    circular1->print();
+    circular1->sort();
+    circular1->print();
+    cout << "Front: " << circular1->front() << endl;
+    cout << "Back: " << circular1->back() << endl;
+    circular1->reverse();
+    circular1->print();
+    cout << "Front: " << circular1->front() << endl;
+    cout << "Back: " << circular1->back() << endl;
     */
 
     return EXIT_SUCCESS;

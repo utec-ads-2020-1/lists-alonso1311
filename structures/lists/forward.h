@@ -75,7 +75,7 @@ void ForwardList<T>::push_back(T item){
 template<typename T>
 void ForwardList<T>::pop_front(){
     if(this->empty()){
-        cerr << name() + " is empty\n";
+        cerr << "Can't pop_front " + name() + " is empty\n";
     } else if(this->nodes == 1){
         clear();
     } else {
@@ -90,7 +90,7 @@ void ForwardList<T>::pop_front(){
 template<typename T>
 void ForwardList<T>::pop_back(){
     if(this->empty()){
-        cerr << name() + " is empty\n";
+        cerr << "Can't pop_back " + name() + " is empty\n";
     } else if(this->nodes == 1){
         clear();
     } else {
@@ -122,42 +122,54 @@ T ForwardList<T>::operator[](int index){
 
 template<typename T>
 void ForwardList<T>::clear(){
-    this->head->killSelf();
-    this->initialize_constructor();
+    if(this->empty()){
+        cerr << "Can't clear because " + name() + " is empty\n";
+    } else {
+        this->head->killSelf();
+        this->initialize_constructor();
+    }
 }
 
 template<typename T>
 void ForwardList<T>::sort(){
-    auto temp = this->head;
-    T max;
+    if(this->empty()){
+        cerr << "Can't sort because " + name() + " is empty\n";
+    } else {
+        auto temp = this->head;
+        T max;
 
-    for(int i = 0; i < this->nodes; ++i){
-        while(temp->next != nullptr){
-            if(temp->data > temp->next->data){
-                max = temp->data;
-                temp->data = temp->next->data;
-                temp->next->data = max;
-            } 
-            temp = temp->next;
+        for(int i = 0; i < this->nodes; ++i){
+            while(temp->next != nullptr){
+                if(temp->data > temp->next->data){
+                    max = temp->data;
+                    temp->data = temp->next->data;
+                    temp->next->data = max;
+                } 
+                temp = temp->next;
+            }
+            temp = this->head;
         }
-        temp = this->head;
     }
 }
 
 template<typename T>
 void ForwardList<T>::reverse(){
-    auto temp = this->head;    
-    Node<T>* temp_next = nullptr,* temp_prev = nullptr;
+    if(this->empty()){
+        cerr << "Can't reverse because " + name() + " is empty\n";
+    } else {
+        auto temp = this->head;    
+        Node<T>* temp_next = nullptr,* temp_prev = nullptr;
 
-    while(temp != nullptr){
-        temp_next = temp->next; 
-        temp->next = temp_prev;
-        temp_prev = temp;
-        temp = temp_next;
+        do {
+            temp_next = temp->next; 
+            temp->next = temp_prev;
+            temp_prev = temp;
+            temp = temp_next;
+        } while(temp != nullptr);
+
+        this->tail = this->head;
+        this->head = temp_prev;
     }
-
-    this->tail = this->head;
-    this->head = temp_prev;
 }
 
 //-------------------------------------------------------------
