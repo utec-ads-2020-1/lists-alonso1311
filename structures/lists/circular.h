@@ -77,7 +77,7 @@ void CircularLinkedList<T>::push_back(T item){
 template<typename T>
 void CircularLinkedList<T>::pop_front(){
     if(this->empty()){
-        cerr << "Can't pop_front because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else if(this->nodes == 1){
         clear();
     } else {
@@ -93,7 +93,7 @@ void CircularLinkedList<T>::pop_front(){
 template<typename T>
 void CircularLinkedList<T>::pop_back(){
     if(this->empty()){
-        cerr << "Can't pop_back because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else if(this->nodes == 1){
         clear();
     } else {
@@ -128,7 +128,7 @@ T CircularLinkedList<T>::operator[](int index){
 template<typename T>
 void CircularLinkedList<T>::clear(){
     if(this->empty()){
-        cerr << "Can't clear because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else {
         this->tail->next = nullptr;
         this->head->killSelf();
@@ -139,7 +139,7 @@ void CircularLinkedList<T>::clear(){
 template<typename T>
 void CircularLinkedList<T>::sort(){
     if(this->empty()){
-        cerr << "Can't sort because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else {
         auto temp = this->head;
         T max;
@@ -161,7 +161,7 @@ void CircularLinkedList<T>::sort(){
 template<typename T>
 void CircularLinkedList<T>::reverse(){
     if(this->empty()){
-        cerr << "Can't reverse because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else {
         auto temp = this->head;
         Node<T>* temp_next = nullptr, * temp_prev = nullptr;

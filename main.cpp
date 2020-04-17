@@ -87,6 +87,10 @@ int main(int argc, char *argv[]) {
     cout << "Front: " << forward1->front() << endl;
     cout << "Back: " << forward1->back() << endl;
 
+    forward1->clear();
+    forward1->print();
+    forward1->pop_front(); 
+
     /*
     //-CIRCULAR test
     auto* circular1 = new CircularLinkedList<int>(); 

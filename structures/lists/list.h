@@ -14,6 +14,7 @@ class List {
         //-Extra Functions
         void initialize_constructor();
         void initialize(Node<T>*&, Node<T>*&, Node<T>*);
+        void show_error(string, string);
 
     public:
         List();
@@ -49,6 +50,11 @@ template<typename T>
 void List<T>::initialize(Node<T>*& head, Node<T>*& tail, Node<T>* temp){
     head = temp;
     tail = head;
+}
+
+template<typename T>
+void List<T>::show_error(string function_name, string name_list){
+    cerr << "Can't " + function_name + " because " + name_list + " is empty\n";
 }
 
 //-------------------------------------------------------------------------------
@@ -92,9 +98,10 @@ int List<T>::size(){
 //---------------------EXTRA FUNCTIONS-------------------------------------------
 template<typename T>
 void List<T>::print(){
-    if(empty())
-        cerr << "Can't print because " + name() + " is empty\n";
-    else {
+    if(empty()){
+        //cerr << "Can't print because " + name() + " is empty\n";
+        show_error(__func__, name());
+    } else {
         auto temp = head;
         for(int i = 0; i < nodes; ++i){
             cout << temp->data << " -> "; 

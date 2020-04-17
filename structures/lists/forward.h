@@ -75,7 +75,7 @@ void ForwardList<T>::push_back(T item){
 template<typename T>
 void ForwardList<T>::pop_front(){
     if(this->empty()){
-        cerr << "Can't pop_front " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else if(this->nodes == 1){
         clear();
     } else {
@@ -90,7 +90,7 @@ void ForwardList<T>::pop_front(){
 template<typename T>
 void ForwardList<T>::pop_back(){
     if(this->empty()){
-        cerr << "Can't pop_back " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else if(this->nodes == 1){
         clear();
     } else {
@@ -123,7 +123,7 @@ T ForwardList<T>::operator[](int index){
 template<typename T>
 void ForwardList<T>::clear(){
     if(this->empty()){
-        cerr << "Can't clear because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else {
         this->head->killSelf();
         this->initialize_constructor();
@@ -133,7 +133,7 @@ void ForwardList<T>::clear(){
 template<typename T>
 void ForwardList<T>::sort(){
     if(this->empty()){
-        cerr << "Can't sort because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else {
         auto temp = this->head;
         T max;
@@ -155,7 +155,7 @@ void ForwardList<T>::sort(){
 template<typename T>
 void ForwardList<T>::reverse(){
     if(this->empty()){
-        cerr << "Can't reverse because " + name() + " is empty\n";
+        this->show_error(__func__, name());
     } else {
         auto temp = this->head;    
         Node<T>* temp_next = nullptr,* temp_prev = nullptr;
