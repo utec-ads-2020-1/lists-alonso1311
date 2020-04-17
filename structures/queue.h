@@ -86,11 +86,17 @@ void queue<T>::pop(){
 
 template<typename T>
 T queue<T>::front(){
+    if(empty())
+        throw "Empty";
+
     return data[0];
 }
 
 template<typename T>
 T queue<T>::back(){
+    if(empty())
+        throw "Empty";
+
     return data[top-1];
 }
 

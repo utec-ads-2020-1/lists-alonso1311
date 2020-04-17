@@ -10,15 +10,15 @@ class LinkedList : public List<T> {
     public:
         LinkedList();
 
-        T front() override;
-        T back() override;
+        //T front();
+        //T back();
         void push_front(T) override;
         void push_back(T) override;
         void pop_front() override;
         void pop_back() override;
         T operator[](int) override;
-        bool empty() override;
-        int size() override;
+        //bool empty();
+        //int size();
         void clear() override;
         void sort() override;
         void reverse() override;
@@ -46,16 +46,6 @@ template<typename T>
 LinkedList<T>::LinkedList() : List<T>(){}
 
 template<typename T>
-T LinkedList<T>::front(){
-    return (empty() == true) ? this->nodes : this->nodes-1;
-}
-
-template<typename T>
-T LinkedList<T>::back(){
-    return (empty() == true) ? this->nodes : this->nodes-1;
-}
-
-template<typename T>
 void LinkedList<T>::push_front(T item){
 
 }
@@ -78,16 +68,6 @@ void LinkedList<T>::pop_back(){
 template<typename T>
 T LinkedList<T>::operator[](int index){
 
-}
-
-template<typename T>
-bool LinkedList<T>::empty(){
-    return (this->head == nullptr) ? true : false;
-}
-
-template<typename T>
-int LinkedList<T>::size(){
-    return this->nodes;
 }
 
 template<typename T>

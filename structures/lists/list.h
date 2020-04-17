@@ -2,7 +2,6 @@
 #define LIST_H
 
 #include "node.h"
-#include<cassert>
 
 // TODO: Implement all methods
 template <typename T>
@@ -13,6 +12,7 @@ class List {
         int nodes;
 
         //-Extra Functions
+        void initialize_constructor();
         void initialize(Node<T>*&, Node<T>*&, Node<T>*);
 
     public:
@@ -39,6 +39,13 @@ class List {
 
 //---------------------EXTRA FUNCTIONS-------------------------------------------
 template<typename T>
+void List<T>::initialize_constructor(){
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->nodes = 0;
+}
+
+template<typename T>
 void List<T>::initialize(Node<T>*& head, Node<T>*& tail, Node<T>* temp){
     head = temp;
     tail = head;
@@ -47,9 +54,7 @@ void List<T>::initialize(Node<T>*& head, Node<T>*& tail, Node<T>* temp){
 //-------------------------------------------------------------------------------
 template<typename T>
 List<T>::List(){
-    this->head = nullptr;
-    this->tail = nullptr;
-    this->nodes = 0;
+    initialize_constructor(); 
 };
 
 template<typename T>
@@ -60,11 +65,17 @@ List<T>::~List(){
 
 template<typename T>
 T List<T>::front(){
-    return head->data;
+    if(empty()){
+        throw "Empty";
+    } 
+    return tail->data;
 }
 
 template<typename T>
 T List<T>::back(){
+    if(empty()){
+        throw "Empty";
+    }
     return tail->data;
 }
 
@@ -81,12 +92,16 @@ int List<T>::size(){
 //---------------------EXTRA FUNCTIONS-------------------------------------------
 template<typename T>
 void List<T>::print(){
-    auto temp = head;
-    for(int i = 0; i < nodes; ++i){
-        cout << temp->data << " -> "; 
-        temp = temp->next;
-    }
+    if(empty())
+        cerr << name() + " is empty\n";
+    else {
+        auto temp = head;
+        for(int i = 0; i < nodes; ++i){
+            cout << temp->data << " -> "; 
+            temp = temp->next;
+        }
     cout << endl;
+    }
 }
 
 #endif

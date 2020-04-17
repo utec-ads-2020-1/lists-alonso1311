@@ -84,6 +84,9 @@ void stack<T>::pop(){
 
 template<typename T>
 T stack<T>::peak(){
+    if(empty())
+        throw "Empty";
+
     return data[top-1];
 }
 

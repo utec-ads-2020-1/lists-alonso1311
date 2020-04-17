@@ -10,23 +10,23 @@ class CircularLinkedList : public List<T> {
     public:
         CircularLinkedList();
 
-        T front();
-        T back();
-        void push_front(T);
-        void push_back(T);
-        void pop_front();
-        void pop_back();
-        T operator[](int);
-        bool empty();
-        int size();
-        void clear();
-        void sort();
-        void reverse();
+        //T front();
+        //T back();
+        void push_front(T) override;
+        void push_back(T) override;
+        void pop_front() override;
+        void pop_back() override;
+        T operator[](int) override;
+        //bool empty();
+        //int size();
+        void clear() override;
+        void sort() override;
+        void reverse() override;
 
         BidirectionalIterator<T> begin();
 	    BidirectionalIterator<T> end();
 
-        string name();
+        string name() override;
 
         /**
          * Merges x into the list by transferring all of its elements at their respective 
@@ -43,16 +43,6 @@ class CircularLinkedList : public List<T> {
 
 template<typename T>
 CircularLinkedList<T>::CircularLinkedList() : List<T>(){}
-
-template<typename T>
-T CircularLinkedList<T>::front(){
-    return (empty() == true) ? this->nodes : this->nodes-1;
-}
-
-template<typename T>
-T CircularLinkedList<T>::back(){
-    return (empty() == true) ? this->nodes : this->nodes-1;
-}
 
 template<typename T>
 void CircularLinkedList<T>::push_front(T item){
@@ -77,16 +67,6 @@ void CircularLinkedList<T>::pop_back(){
 template<typename T>
 T CircularLinkedList<T>::operator[](int index){
 
-}
-
-template<typename T>
-bool CircularLinkedList<T>::empty(){
-    return (this->head == nullptr) ? true : false;
-}
-
-template<typename T>
-int CircularLinkedList<T>::size(){
-    return this->nodes;
 }
 
 template<typename T>

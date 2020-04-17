@@ -76,15 +76,13 @@ template<typename T>
 void ForwardList<T>::pop_front(){
     if(this->empty()){
         cerr << name() + " is empty\n";
+    } else if(this->nodes == 1){
+        clear();
     } else {
         auto temp = this->head; 
         this->head = this->head->next;
         delete temp;
 
-        if(this->nodes == 1){
-            this->tail = this->head;
-        }
-        
         this->nodes--;
     }
 }
@@ -93,22 +91,17 @@ template<typename T>
 void ForwardList<T>::pop_back(){
     if(this->empty()){
         cerr << name() + " is empty\n";
+    } else if(this->nodes == 1){
+        clear();
     } else {
         auto temp = this->head; 
-        if(this->nodes > 1){
-            while(temp->next != this->tail){
-                temp = temp->next;
-            }
+        while(temp->next != this->tail){
+            temp = temp->next;
         }
          
         temp->next = this->tail->next;
         delete this->tail;
-
-        if(this->nodes == 1){
-            this->initialize(this->head, this->tail, temp);
-        } else {
-            this->tail = temp;
-        }
+        this->tail = temp;
 
         this->nodes--;
     }
@@ -127,9 +120,7 @@ T ForwardList<T>::operator[](int index){
 template<typename T>
 void ForwardList<T>::clear(){
     this->head->killSelf();
-    this->head = nullptr;
-    this->tail = nullptr;
-    this->nodes = 0;
+    this->initialize_constructor();
 }
 
 template<typename T>
