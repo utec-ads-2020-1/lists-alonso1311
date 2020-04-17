@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 
     //Tester::execute();
     
-        
+    /*    
     //-STACK test
     auto* stack1 = new stack<int>(3);
     stack1->push(3);
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     cout << "Size: " << stack1->size() << endl;
 
     delete stack1;
-     
+    */ 
 
     /*
     //-QUEUE test
