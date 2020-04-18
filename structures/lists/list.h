@@ -54,7 +54,9 @@ void List<T>::initialize(Node<T>*& head, Node<T>*& tail, Node<T>* temp){
 
 template<typename T>
 void List<T>::show_error(string function_name, string name_list){
-    cerr << "Can't " + function_name + " because " + name_list + " is empty\n";
+    string error = "Can't " + function_name + " because " + name_list + " is empty";
+    cerr << error << endl;
+    throw new out_of_range("error"); 
 }
 
 //-------------------------------------------------------------------------------
@@ -72,7 +74,7 @@ List<T>::~List(){
 template<typename T>
 T List<T>::front(){
     if(empty()){
-        throw "Empty";
+        show_error(__func__, name());
     } 
     return head->data;
 }
@@ -80,7 +82,7 @@ T List<T>::front(){
 template<typename T>
 T List<T>::back(){
     if(empty()){
-        throw "Empty";
+        show_error(__func__, name());
     }
     return tail->data;
 }
@@ -99,7 +101,6 @@ int List<T>::size(){
 template<typename T>
 void List<T>::print(){
     if(empty()){
-        //cerr << "Can't print because " + name() + " is empty\n";
         show_error(__func__, name());
     } else {
         auto temp = head;

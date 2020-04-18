@@ -47,7 +47,15 @@ LinkedList<T>::LinkedList() : List<T>(){}
 
 template<typename T>
 void LinkedList<T>::push_front(T item){
+    auto new_node = new Node<T>(item);
 
+    if(this->empty()){
+        this->initialize(this->head, this->tail, new_node);
+    } else {
+        new_node->next = this->head;
+        this->head->prev = new_node;
+        this->head = new_node;
+    }
 }
 
 template<typename T>

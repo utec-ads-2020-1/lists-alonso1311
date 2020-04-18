@@ -74,9 +74,10 @@ void stack<T>::push(T item){
 
 template<typename T>
 void stack<T>::pop(){
-    if(empty() == true)
-        cerr << "The stack is empty\n";
-    else {
+    if(empty()){
+        cerr << "Can't pop because stack is empty\n";
+        throw new out_of_range("empty");
+    } else {
         data[top] = data [top+1];
         top--; 
     }
@@ -84,8 +85,10 @@ void stack<T>::pop(){
 
 template<typename T>
 T stack<T>::peak(){
-    if(empty())
-        throw "Empty";
+    if(empty()){
+        cerr << "Can't peak because stack is empty\n";
+        throw new out_of_range("empty");
+    }
 
     return data[top-1];
 }
@@ -107,8 +110,13 @@ bool stack<T>::empty(){
 //--------------EXTRA FUNCTIONS------------------------
 template<typename T>
 void stack<T>::print(){
-    for(int i = top-1; i >= 0; --i)
-        cout << data[i] << endl;
+    if(empty()){
+        cerr << "Can't print because stack is empty\n";
+        throw new out_of_range("empty");
+    } else {
+        for(int i = top-1; i >= 0; --i)
+            cout << data[i] << endl;
+    }
 }
 
 #endif

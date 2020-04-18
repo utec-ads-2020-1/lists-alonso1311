@@ -74,9 +74,10 @@ void queue<T>::push(T item){
 }
 template<typename T>
 void queue<T>::pop(){
-    if(empty() == true)
-        cerr << "The queue is empty\n";
-    else{
+    if(empty()){
+        cerr << "Can't pop because queue is empty\n";
+        throw new out_of_range("empty");
+    } else{
         for(int i = 0; i < top; ++i)
             data[i] = data[i+1];
 
@@ -86,16 +87,20 @@ void queue<T>::pop(){
 
 template<typename T>
 T queue<T>::front(){
-    if(empty())
-        throw "Empty";
+    if(empty()){
+        cerr << "Can't front because queue is empty\n";
+        throw new out_of_range("empty");
+    }
 
     return data[0];
 }
 
 template<typename T>
 T queue<T>::back(){
-    if(empty())
-        throw "Empty";
+    if(empty()){
+        cerr << "Can't back because queue is empty\n";
+        throw new out_of_range("empty");
+    }
 
     return data[top-1];
 }
@@ -114,8 +119,13 @@ bool queue<T>::empty(){
 //----------------EXTRA FUNCTIONS------------------------------------
 template<typename T>
 void queue<T>::print(){
-    for(int i = 0; i < top; ++i)
-        cout << data[i] << endl;
+    if(empty()){
+        cerr << "Can't print because queue is empty\n";
+        throw new out_of_range("empty");
+    } else {
+        for(int i = 0; i < top; ++i)
+            cout << data[i] << endl;
+    }
 }
 
 #endif
