@@ -109,6 +109,10 @@ void ForwardList<T>::pop_back(){
 
 template<typename T>
 T ForwardList<T>::operator[](int index){
+    if(index >= this->nodes){
+        cerr << "Invalid index\n";
+        throw new out_of_range("index error");
+    }
     auto temp = this->head; 
     int i = 0;
     
@@ -192,7 +196,19 @@ string ForwardList<T>::name(){
 //-------------------------------------------------------------
 template<typename T>
 void ForwardList<T>::merge(ForwardList<T>& new_ForwardList){
-    
+    if(this->empty() && new_ForwardList.empty()){
+        cerr << "Can't merge because both " + name() + " are empty\n";
+        throw new out_of_range("empty");
+    } else {
+        auto new_temp = new_ForwardList.head;
+
+        for(int i = 0; i < new_ForwardList.nodes; ++i){
+            push_back(new_temp->data);
+            new_temp = new_temp->next;
+        }
+
+        new_ForwardList.clear();
+    }
 }
 
 #endif

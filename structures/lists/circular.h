@@ -199,7 +199,19 @@ string CircularLinkedList<T>::name(){
 //-------------------------------------------------------------
 template<typename T>
 void CircularLinkedList<T>::merge(CircularLinkedList<T>& new_CircularLinkedList){
+    if(this->empty() && new_CircularLinkedList.empty()){
+        cerr << "Can't merge because both " + name() + " are empty\n";
+        throw new out_of_range("empty");
+    } else {
+        auto new_temp = new_CircularLinkedList.head;
 
+        for(int i = 0; i < new_CircularLinkedList.nodes; ++i){
+            push_back(new_temp->data);
+            new_temp = new_temp->next;
+        }
+
+        new_CircularLinkedList.clear();
+    }
 }
 
 #endif

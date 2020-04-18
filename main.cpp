@@ -1,7 +1,7 @@
 //#include "test/tester.h"
-//#include"structures/stack.h"
-//#include"structures/queue.h"
-//#include"structures/lists/linked.h"
+#include"structures/stack.h"
+#include"structures/queue.h"
+#include"structures/lists/linked.h"
 #include"structures/lists/forward.h"
 #include"structures/lists/circular.h"
 
@@ -75,6 +75,17 @@ int main(int argc, char *argv[]) {
     cout << "Front: " << forward1->front() << endl;
     cout << "Back: " << forward1->back() << endl;
     
+    ForwardList<int> to_merge;
+    to_merge.push_back(5);
+    to_merge.push_back(6);
+    to_merge.push_back(10);
+    to_merge.print();
+    forward1->merge(to_merge);
+    forward1->print();
+    cout << "Size: " << forward1->size() << endl;
+    cout << "Front: " << forward1->front() << endl;
+    cout << "Back: " << forward1->back() << endl;
+
     forward1->sort();
     forward1->print();
     cout << "Front: " << forward1->front() << endl;
@@ -103,19 +114,26 @@ int main(int argc, char *argv[]) {
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
     circular1->pop_back(); 
-    circular1->pop_back(); 
+    circular1->pop_front(); 
     circular1->print();
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
-    circular1->pop_front(); 
-    circular1->print();
-    circular1->pop_front(); 
-    circular1->print();
     circular1->push_back(5); 
     circular1->push_front(8); 
     circular1->push_front(1); 
     circular1->push_back(12);
     circular1->print();
+
+    CircularLinkedList<int> to_merge;
+    to_merge.push_back(5);
+    to_merge.push_back(6);
+    to_merge.push_back(10);
+    to_merge.print();
+    circular1->merge(to_merge);
+    circular1->print();
+    cout << "Front: " << circular1->front() << endl;
+    cout << "Back: " << circular1->back() << endl;
+
     circular1->clear();
     circular1->print();
     circular1->push_back(4); 
@@ -131,6 +149,48 @@ int main(int argc, char *argv[]) {
     circular1->print();
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
+    */
+
+    /*
+    //-LINKED test
+    auto* linked1 = new LinkedList<int>();
+    linked1->push_back(3);
+    linked1->push_back(5);
+    linked1->print();
+    linked1->push_front(10);
+    linked1->push_front(9);
+    linked1->print();
+    cout << "Front: " << linked1->front() << endl;
+    cout << "Back: " << linked1->back() << endl;
+
+    linked1->sort();
+    linked1->print();
+    cout << "Front: " << linked1->front() << endl;
+    cout << "Back: " << linked1->back() << endl;
+
+    linked1->reverse();
+    linked1->print();
+    cout << "Front: " << linked1->front() << endl;
+    cout << "Back: " << linked1->back() << endl;
+
+    LinkedList<int> to_merge;
+    to_merge.push_back(5);
+    to_merge.push_back(6);
+    to_merge.push_back(10);
+    to_merge.print();
+    linked1->merge(to_merge);
+    linked1->print();
+
+    linked1->pop_back();
+    linked1->print();
+    cout << "Size: " << linked1->size() << endl;
+    cout << "Front: " << linked1->front() << endl;
+    cout << "Back: " << linked1->back() << endl;
+    linked1->pop_front();
+    linked1->print();
+    cout << "Size: " << linked1->size() << endl;
+    cout << "Front: " << linked1->front() << endl;
+    cout << "Back: " << linked1->back() << endl;
     */
 
     return EXIT_SUCCESS;

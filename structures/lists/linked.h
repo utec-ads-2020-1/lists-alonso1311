@@ -56,41 +56,134 @@ void LinkedList<T>::push_front(T item){
         this->head->prev = new_node;
         this->head = new_node;
     }
+
+    this->nodes++;
 }
 
 template<typename T>
 void LinkedList<T>::push_back(T item){
+    auto new_node = new Node<T>(item);
 
+    if(this->empty()){
+        this->initialize(this->head, this->tail, new_node);
+    } else {
+        this->tail->next = new_node; 
+        new_node->prev = this->tail;
+        this->tail = new_node;
+    }
+    this->nodes++;
 }
 
 template<typename T>
 void LinkedList<T>::pop_front(){
-
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } else if(this->nodes == 1){
+        clear();
+    } else {
+        auto temp = this->head;
+        this->head = this->head->next;
+        delete temp;
+        this->head->prev = nullptr;
+            
+        this->nodes--;
+    }
 }
 
 template<typename T>
 void LinkedList<T>::pop_back(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } else if(this->nodes == 1){
+        clear();
+    } else {
+        auto temp = this->head;
+        while(temp->next != this->tail){
+            temp = temp->next;
+        }
 
+        temp->next = this->tail->next;
+        delete this->tail;
+        this->tail = temp;
+
+        this->nodes--;
+    }
 }
 
 template<typename T>
 T LinkedList<T>::operator[](int index){
+    if(index >= this->nodes){
+        cerr << "Invalid index\n";
+        throw new out_of_range("index error");
+    }
 
+    Node<T>* temp;
+    int i;
+    
+    if(index <= this->nodes/2){
+        temp = this->head; 
+        i = 0;
+        
+        while(i != index){
+            temp = temp->next;
+            ++i;
+        }
+    } else {
+        temp = this->tail;
+        i = this->nodes-1;
+        while(i != index){
+            temp = temp->prev;
+            --i;
+        }
+    }
+    return temp->data;
 }
 
 template<typename T>
 void LinkedList<T>::clear(){
-
+        this->head->killSelf();
+        this->initialize_constructor();
 }
 
 template<typename T>
 void LinkedList<T>::sort(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } else {
+        auto temp = this->head;
+        T max;
 
+        for(int i = 0; i < this->nodes; ++i){
+            while(temp->next != nullptr){
+                if(temp->data > temp->next->data){
+                    max = temp->data;
+                    temp->data = temp->next->data;
+                    temp->next->data = max;
+                }
+                temp = temp->next;
+            }
+            temp = this->head;
+        }
+    }
 }
 
 template<typename T>
 void LinkedList<T>::reverse(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } else {
+        LinkedList<T> temp;
+        //auto temp = new LinkedList<T>();
+        auto left_temp = this->tail; 
 
+        do {
+            temp.push_back(left_temp->data);
+            left_temp = left_temp->prev;
+        } while(left_temp != nullptr);
+
+        clear();
+        merge(temp);
+    }
 }
 
 //-------------------------------------------------------------
@@ -113,7 +206,19 @@ string LinkedList<T>::name(){
 //-------------------------------------------------------------
 template<typename T>
 void LinkedList<T>::merge(LinkedList<T>& new_LinkedList){
+    if(this->empty() && new_LinkedList.empty()){
+        cerr << "Can't merge because both " + name() + " are empty\n";
+        throw new out_of_range("empty");
+    } else {
+        auto new_temp = new_LinkedList.head;
 
+        for(int i = 0; i < new_LinkedList.nodes; ++i){
+            push_back(new_temp->data);     
+            new_temp = new_temp->next;
+        }
+
+        new_LinkedList.clear();
+    }
 }
 
 #endif
