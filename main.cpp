@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
     cout << "Size: " << forward1->size() << endl;
     cout << "Front: " << forward1->front() << endl;
     cout << "Back: " << forward1->back() << endl;
-    //cout << "Index[2]: " << forward1[2] << endl; //-AQUI ESTÁ
+    cout << "Index[3]: " << (*forward1)[3] << endl;
     forward1->clear();
     forward1->push_back(2); 
     forward1->push_back(9); 
@@ -114,6 +114,8 @@ int main(int argc, char *argv[]) {
     circular1->print();
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
+    cout << "Index[4]: " << (*circular1)[4] << endl;
+
     circular1->pop_back(); 
     circular1->pop_front(); 
     circular1->print();
@@ -164,6 +166,7 @@ int main(int argc, char *argv[]) {
     linked1->print();
     cout << "Front: " << linked1->front() << endl;
     cout << "Back: " << linked1->back() << endl;
+    cout << "Index[0]: " << (*linked1)[0] << endl;
 
     linked1->sort();
     linked1->print();
