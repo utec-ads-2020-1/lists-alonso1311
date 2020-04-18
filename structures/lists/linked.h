@@ -112,9 +112,9 @@ void LinkedList<T>::pop_back(){
 
 template<typename T>
 T LinkedList<T>::operator[](int index){
-    if(index >= this->nodes){
-        cerr << "Invalid index\n";
-        throw new out_of_range("index error");
+    if(index >= this->nodes || index < 0){
+        cerr << "Index is out of range or " + name() + " is empty\n";
+        throw new out_of_range("invalid index");
     }
 
     Node<T>* temp;

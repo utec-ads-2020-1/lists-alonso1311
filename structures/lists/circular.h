@@ -114,6 +114,13 @@ void CircularLinkedList<T>::pop_back(){
 
 template<typename T>
 T CircularLinkedList<T>::operator[](int index){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } else if(index < 0){
+        cerr << "Index can't be negative\n";
+        throw new out_of_range("invalid index");
+    }
+
     auto temp = this->head;
     int i = 0;
 
