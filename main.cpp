@@ -1,6 +1,6 @@
 //#include "test/tester.h"
-#include"structures/stack.h"
-#include"structures/queue.h"
+//#include"structures/stack.h"
+//#include"structures/queue.h"
 #include"structures/lists/linked.h"
 #include"structures/lists/forward.h"
 #include"structures/lists/circular.h"
@@ -127,6 +127,9 @@ int main(int argc, char *argv[]) {
     circular1->push_back(12);
     circular1->print();
 
+    circular1->reverse();
+    circular1->print();
+
     CircularLinkedList<int> to_merge;
     to_merge.push_back(5);
     to_merge.push_back(6);
@@ -145,10 +148,12 @@ int main(int argc, char *argv[]) {
     circular1->push_front(8); 
     circular1->push_back(2);
     circular1->print();
+
     circular1->sort();
     circular1->print();
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
+
     circular1->reverse();
     circular1->print();
     cout << "Front: " << circular1->front() << endl;

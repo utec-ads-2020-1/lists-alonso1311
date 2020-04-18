@@ -97,15 +97,11 @@ void LinkedList<T>::pop_back(){
     } else if(this->nodes == 1){
         this->clear();
     } else {
-        auto temp = this->head;
-        while(temp->next != this->tail){
-            temp = temp->next;
-        }
+        auto temp = this->tail;
+        this->tail = this->tail->prev;
+        this->tail->next = temp->next;
 
-        temp->next = this->tail->next;
-        delete this->tail;
-        this->tail = temp;
-
+        delete temp;
         this->nodes--;
     }
 }
@@ -167,7 +163,6 @@ void LinkedList<T>::reverse(){
         this->show_error(__func__, name());
     } else {
         LinkedList<T> temp;
-        //auto temp = new LinkedList<T>();
         auto left_temp = this->tail; 
 
         do {

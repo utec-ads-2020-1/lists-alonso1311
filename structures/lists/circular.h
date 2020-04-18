@@ -52,6 +52,8 @@ void CircularLinkedList<T>::push_front(T item){
         this->initialize(this->head, this->tail, new_node);
     } else {
         new_node->next = this->head;
+        new_node->prev = this->tail;
+        this->head->prev = new_node;
         this->head = new_node;
     }
 
@@ -67,6 +69,7 @@ void CircularLinkedList<T>::push_back(T item){
         this->initialize(this->head, this->tail, new_node);
     } else {
         this->tail->next = new_node;
+        new_node->prev = this->tail;
         this->tail = new_node;
     }
     
@@ -84,6 +87,7 @@ void CircularLinkedList<T>::pop_front(){
         auto temp = this->head;
         this->head = this->head->next;
         delete temp;
+        this->head->prev = this->tail;
 
         this->tail->next = this->head;
         this->nodes--;
@@ -97,16 +101,11 @@ void CircularLinkedList<T>::pop_back(){
     } else if(this->nodes == 1){
         this->clear();
     } else {
-        auto temp = this->head;
-        while(temp->next != this->tail){
-            temp = temp->next;
-        }
+        auto temp = this->tail;
+        this->tail = this->tail->prev;
+        this->tail->next = temp->next;
 
-        temp->next = this->tail->next;
-        delete this->tail;
-        this->tail =  temp;
-
-        this->tail->next = this->head;
+        delete temp;
         this->nodes--;
     }
 
@@ -159,19 +158,17 @@ void CircularLinkedList<T>::reverse(){
     if(this->empty()){
         this->show_error(__func__, name());
     } else {
-        auto temp = this->head;
-        Node<T>* temp_next = nullptr, * temp_prev = nullptr;
+        CircularLinkedList<T> temp;
+        auto left_temp = this->tail;
 
         do{
-            temp_next = temp->next;
-            temp->next = temp_prev;
-            temp_prev = temp;
-            temp = temp_next;
-        } while(temp != this->head);
+            temp.push_back(left_temp->data);
+            left_temp = left_temp->prev;
+        } while(left_temp != this->head);
+        temp.push_back(this->head->data);
 
-        this->tail = this->head;
-        this->head = temp_prev;
-        this->tail->next = this->head;
+        this->clear();
+        merge(temp);
     }
 }
 
