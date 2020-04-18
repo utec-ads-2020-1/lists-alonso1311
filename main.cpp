@@ -104,7 +104,6 @@ int main(int argc, char *argv[]) {
     forward1->pop_front(); 
     */
 
-    /*
     //-CIRCULAR test
     auto* circular1 = new CircularLinkedList<int>(); 
     circular1->push_back(3); 
@@ -139,8 +138,10 @@ int main(int argc, char *argv[]) {
     circular1->print();
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
+    cout << "Index[10]: " << (*circular1)[10] << endl;
     //to_merge.print();
 
+    /*
     circular1->clear();
     //circular1->print();
     circular1->push_back(4); 
