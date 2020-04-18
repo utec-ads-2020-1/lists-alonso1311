@@ -29,7 +29,7 @@ class List {
         virtual T operator[](int) = 0;
         bool empty();
         int size();
-        virtual void clear() = 0;
+        void clear();
         virtual void sort() = 0;
         virtual void reverse() = 0;
         virtual string name() = 0;
@@ -95,6 +95,17 @@ bool List<T>::empty(){
 template<typename T>
 int List<T>::size(){
     return nodes;
+}
+
+template<typename T>
+void List<T>::clear(){
+    if(empty()){
+        show_error(__func__, name());
+    } else {
+        tail->next = nullptr;
+        head->killSelf();
+        initialize_constructor();
+    }
 }
 
 //---------------------EXTRA FUNCTIONS-------------------------------------------

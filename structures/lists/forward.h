@@ -19,7 +19,7 @@ class ForwardList : public List<T> {
         T operator[](int) override;
         //bool empty();
         //int size();
-        void clear() override;
+        //void clear();
         void sort() override;
         void reverse() override;
 
@@ -77,7 +77,7 @@ void ForwardList<T>::pop_front(){
     if(this->empty()){
         this->show_error(__func__, name());
     } else if(this->nodes == 1){
-        clear();
+        this->clear();
     } else {
         auto temp = this->head; 
         this->head = this->head->next;
@@ -92,7 +92,7 @@ void ForwardList<T>::pop_back(){
     if(this->empty()){
         this->show_error(__func__, name());
     } else if(this->nodes == 1){
-        clear();
+        this->clear();
     } else {
         auto temp = this->head; 
         while(temp->next != this->tail){
@@ -122,16 +122,6 @@ T ForwardList<T>::operator[](int index){
     }
     
     return temp->data;
-}
-
-template<typename T>
-void ForwardList<T>::clear(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else {
-        this->head->killSelf();
-        this->initialize_constructor();
-    }
 }
 
 template<typename T>

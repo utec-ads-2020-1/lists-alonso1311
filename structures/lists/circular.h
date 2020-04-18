@@ -19,7 +19,7 @@ class CircularLinkedList : public List<T> {
         T operator[](int) override;
         //bool empty();
         //int size();
-        void clear() override;
+        //void clear();
         void sort() override;
         void reverse() override;
 
@@ -79,7 +79,7 @@ void CircularLinkedList<T>::pop_front(){
     if(this->empty()){
         this->show_error(__func__, name());
     } else if(this->nodes == 1){
-        clear();
+        this->clear();
     } else {
         auto temp = this->head;
         this->head = this->head->next;
@@ -95,7 +95,7 @@ void CircularLinkedList<T>::pop_back(){
     if(this->empty()){
         this->show_error(__func__, name());
     } else if(this->nodes == 1){
-        clear();
+        this->clear();
     } else {
         auto temp = this->head;
         while(temp->next != this->tail){
@@ -123,17 +123,6 @@ T CircularLinkedList<T>::operator[](int index){
     }
 
     return temp->data;
-}
-
-template<typename T>
-void CircularLinkedList<T>::clear(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else {
-        this->tail->next = nullptr;
-        this->head->killSelf();
-        this->initialize_constructor();
-    }
 }
 
 template<typename T>

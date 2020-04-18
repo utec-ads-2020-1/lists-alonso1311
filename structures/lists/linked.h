@@ -19,7 +19,7 @@ class LinkedList : public List<T> {
         T operator[](int) override;
         //bool empty();
         //int size();
-        void clear() override;
+        //void clear();
         void sort() override;
         void reverse() override;
 
@@ -79,7 +79,7 @@ void LinkedList<T>::pop_front(){
     if(this->empty()){
         this->show_error(__func__, name());
     } else if(this->nodes == 1){
-        clear();
+        this->clear();
     } else {
         auto temp = this->head;
         this->head = this->head->next;
@@ -95,7 +95,7 @@ void LinkedList<T>::pop_back(){
     if(this->empty()){
         this->show_error(__func__, name());
     } else if(this->nodes == 1){
-        clear();
+        this->clear();
     } else {
         auto temp = this->head;
         while(temp->next != this->tail){
@@ -140,12 +140,6 @@ T LinkedList<T>::operator[](int index){
 }
 
 template<typename T>
-void LinkedList<T>::clear(){
-        this->head->killSelf();
-        this->initialize_constructor();
-}
-
-template<typename T>
 void LinkedList<T>::sort(){
     if(this->empty()){
         this->show_error(__func__, name());
@@ -181,7 +175,7 @@ void LinkedList<T>::reverse(){
             left_temp = left_temp->prev;
         } while(left_temp != nullptr);
 
-        clear();
+        this->clear();
         merge(temp);
     }
 }

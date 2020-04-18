@@ -85,6 +85,7 @@ int main(int argc, char *argv[]) {
     cout << "Size: " << forward1->size() << endl;
     cout << "Front: " << forward1->front() << endl;
     cout << "Back: " << forward1->back() << endl;
+    //to_merge.print();
 
     forward1->sort();
     forward1->print();
@@ -133,9 +134,10 @@ int main(int argc, char *argv[]) {
     circular1->print();
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
+    //to_merge.print();
 
     circular1->clear();
-    circular1->print();
+    //circular1->print();
     circular1->push_back(4); 
     circular1->push_front(1); 
     circular1->push_front(8); 
@@ -180,6 +182,9 @@ int main(int argc, char *argv[]) {
     to_merge.print();
     linked1->merge(to_merge);
     linked1->print();
+    to_merge.push_back(1);
+    to_merge.push_front(2);
+    to_merge.print();
 
     linked1->pop_back();
     linked1->print();
