@@ -22,4 +22,35 @@ class ForwardIterator {
         T operator*();
 };
 
+template<typename T>
+ForwardIterator<T>::ForwardIterator(){
+    this->current = nullptr;
+}
+
+template<typename T>
+ForwardIterator<T>::ForwardIterator(Node<T>* current_){
+    this->current = current_;
+}
+
+template<typename T>
+ForwardIterator<T> ForwardIterator<T>::operator=(ForwardIterator<T> iterator){
+    iterator.current = current; 
+}
+
+template<typename T>
+bool ForwardIterator<T>::operator!=(ForwardIterator<T> iterator){
+    return current != iterator.current;
+}
+
+template<typename T>
+ForwardIterator<T> ForwardIterator<T>::operator++(){
+    current = current->next;
+    return 0;
+}
+
+template<typename T>
+T ForwardIterator<T>::operator*(){
+    return current->data;
+}
+
 #endif

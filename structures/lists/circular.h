@@ -175,12 +175,14 @@ void CircularLinkedList<T>::reverse(){
 //-------------------------------------------------------------
 template<typename T>
 BidirectionalIterator<T> CircularLinkedList<T>::begin(){
-
+    BidirectionalIterator<T> iterator(this->head); 
+    return iterator;
 }
 
 template<typename T>
 BidirectionalIterator<T> CircularLinkedList<T>::end(){
-
+    BidirectionalIterator<T> iterator(this->tail); 
+    return iterator;
 }
 
 //-------------------------------------------------------------

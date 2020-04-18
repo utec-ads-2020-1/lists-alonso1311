@@ -169,11 +169,14 @@ void ForwardList<T>::reverse(){
 //-------------------------------------------------------------
 template<typename T>
 ForwardIterator<T> ForwardList<T>::begin(){
-
+    ForwardIterator<T> iterator(this->head);
+    return iterator;
 }
 
 template<typename T>
 ForwardIterator<T> ForwardList<T>::end(){
+    ForwardIterator<T> iterator(this->tail);
+    return iterator;
 
 }
 

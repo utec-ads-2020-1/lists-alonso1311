@@ -178,12 +178,14 @@ void LinkedList<T>::reverse(){
 //-------------------------------------------------------------
 template<typename T>
 BidirectionalIterator<T> LinkedList<T>::begin(){
-
+    BidirectionalIterator<T> iterator(this->head);
+    return iterator;
 }
 
 template<typename T>
 BidirectionalIterator<T> LinkedList<T>::end(){
-
+    BidirectionalIterator<T> iterator(this->tail);
+    return iterator;
 }
 
 //-------------------------------------------------------------
