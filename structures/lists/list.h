@@ -67,6 +67,7 @@ List<T>::List(){
 
 template<typename T>
 List<T>::~List(){
+    tail->next = nullptr;
     head->killSelf();
 }
 
