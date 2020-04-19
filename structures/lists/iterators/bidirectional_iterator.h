@@ -36,7 +36,8 @@ BidirectionalIterator<T>::BidirectionalIterator(Node<T>* current_){
 
 template<typename T>
 BidirectionalIterator<T> BidirectionalIterator<T>::operator=(BidirectionalIterator<T> iterator){
-    iterator.current = current;
+    current = iterator.current;
+    return *this;
 }
 
 template<typename T>
@@ -46,14 +47,22 @@ bool BidirectionalIterator<T>::operator!=(BidirectionalIterator<T> iterator){
 
 template<typename T>
 BidirectionalIterator<T> BidirectionalIterator<T>::operator++(){
+    if(current->next == nullptr){
+        cerr << "There isn't next\n";
+        throw new out_of_range("no next");
+    }
     current = current->next;
-    return 0;
+    return *this;
 }
 
 template<typename T>
 BidirectionalIterator<T> BidirectionalIterator<T>::operator--(){
+    if(current->prev == nullptr){
+        cerr << "There isn't prev\n";
+        throw new out_of_range("no prev");
+    }
     current = current->prev;
-    return 0;
+    return *this;
 }
 
 template<typename T>

@@ -169,12 +169,18 @@ void ForwardList<T>::reverse(){
 //-------------------------------------------------------------
 template<typename T>
 ForwardIterator<T> ForwardList<T>::begin(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
     ForwardIterator<T> iterator(this->head);
     return iterator;
 }
 
 template<typename T>
 ForwardIterator<T> ForwardList<T>::end(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
     ForwardIterator<T> iterator(this->tail);
     return iterator;
 

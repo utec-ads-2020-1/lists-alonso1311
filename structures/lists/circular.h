@@ -50,6 +50,8 @@ void CircularLinkedList<T>::push_front(T item){
 
     if(this->empty()){
         this->initialize(this->head, this->tail, new_node);
+        this->head->prev = this->tail;
+        this->tail->next = this->head;
     } else {
         new_node->next = this->head;
         new_node->prev = this->tail;
@@ -67,13 +69,16 @@ void CircularLinkedList<T>::push_back(T item){
 
     if(this->empty()){
         this->initialize(this->head, this->tail, new_node);
+        this->head->prev = this->tail;
+        this->tail->next = this->head;
     } else {
-        this->tail->next = new_node;
         new_node->prev = this->tail;
+        new_node->next = this->head;
+        this->tail->next = new_node;
         this->tail = new_node;
     }
     
-    this->tail->next = this->head;
+    this->head->prev = this->tail;
     this->nodes++;
 }
 
@@ -175,12 +180,18 @@ void CircularLinkedList<T>::reverse(){
 //-------------------------------------------------------------
 template<typename T>
 BidirectionalIterator<T> CircularLinkedList<T>::begin(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
     BidirectionalIterator<T> iterator(this->head); 
     return iterator;
 }
 
 template<typename T>
 BidirectionalIterator<T> CircularLinkedList<T>::end(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
     BidirectionalIterator<T> iterator(this->tail); 
     return iterator;
 }

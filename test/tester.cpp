@@ -38,7 +38,7 @@ void Tester::testList(Collection collection) {
     unsigned int size = mocker.generateRandomInt(10);
     T* elements = mocker.generateRandomArray<T>(size);
     List<T>* list = getCollection<T>(collection);
-    List<T>* list1 = getCollection<T>(collection);
+    //List<T>* list1 = getCollection<T>(collection);
 
     ASSERT(list->size() == 0, "The " + list->name() + " size is not working");
     ASSERT(list->empty() == true, "The " + list->name() + " empty is not working");

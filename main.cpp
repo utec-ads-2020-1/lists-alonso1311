@@ -1,16 +1,16 @@
-//#include "test/tester.h"
+#include "test/tester.h"
 //#include"structures/stack.h"
 //#include"structures/queue.h"
-#include"structures/lists/linked.h"
-#include"structures/lists/forward.h"
-#include"structures/lists/circular.h"
+//#include"structures/lists/linked.h"
+//#include"structures/lists/forward.h"
+//#include"structures/lists/circular.h"
 
 int main(int argc, char *argv[]) {
     cout << "===========================================================" << endl;
     cout << "\tLists Practice" << endl;
     cout << "===========================================================" << endl << endl;
 
-    //Tester::execute();
+    Tester::execute();
     
     /*    
     //-STACK test
@@ -64,6 +64,18 @@ int main(int argc, char *argv[]) {
     cout << "Front: " << forward1->front() << endl;
     cout << "Back: " << forward1->back() << endl;
     cout << "Index[3]: " << (*forward1)[3] << endl;
+    auto it_forward_begin = forward1->begin();
+    cout << "Iterator begin: " << *it_forward_begin << endl;
+    //++it__forward_begin;
+    cout << "Iterator next: " << *(++it_forward_begin) << endl;
+    auto it_forward_end = forward1->end();
+    cout << "Iterator end: " << *(it_forward_end) << endl;
+    ForwardIterator<int> it;
+    it = it_forward_begin;
+    cout << "Iterator: " << *(it) << endl;
+    cout << "¿it_forward_begin != it?: " << (it != it_forward_end) << endl;
+    //cout << "Iterator end next: " << *(++it_forward_end) << endl;
+
     forward1->clear();
     forward1->push_back(2); 
     forward1->push_back(9); 
@@ -111,10 +123,27 @@ int main(int argc, char *argv[]) {
     circular1->push_front(5); 
     circular1->push_front(1); 
     circular1->push_back(10); 
+    circular1->push_front(11); 
     circular1->print();
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
     cout << "Index[4]: " << (*circular1)[4] << endl;
+    auto it_circular_begin = circular1->begin();
+    cout << "Iterator begin: " << *(it_circular_begin) << endl;
+    --it_circular_begin;
+    cout << "Iterator prev begin: " << *(it_circular_begin) << endl;
+    //cout << "Iterator prev begin: " << *(it_circular_begin) << endl;
+    auto it_circular_end = circular1->end();
+    cout << "Iterator end: " << *(it_circular_end) << endl;
+    cout << "Iterator next end: " << *(++it_circular_end) << endl;
+    cout << "Iterator next end: " << *(it_circular_end) << endl;
+
+    cout << "¿Iterator prev begin != iterator end? : " << (it_circular_begin != circular1->end()) << endl;
+    cout << "¿Iterator next end != iterator prev begin? : " << (it_circular_end != it_circular_begin)<< endl;
+
+    BidirectionalIterator<int> it;
+    it = it_circular_begin;
+    cout << "Iterator prev begin: " << *(it) << endl;
 
     circular1->pop_back(); 
     circular1->pop_front(); 
@@ -141,6 +170,9 @@ int main(int argc, char *argv[]) {
     cout << "Back: " << circular1->back() << endl;
     cout << "Index[10]: " << (*circular1)[10] << endl;
     //to_merge.print();
+    it = circular1->begin();
+    --it;
+    cout << *it << endl;
 
     circular1->clear();
     //circular1->print();
@@ -173,6 +205,15 @@ int main(int argc, char *argv[]) {
     cout << "Front: " << linked1->front() << endl;
     cout << "Back: " << linked1->back() << endl;
     cout << "Index[0]: " << (*linked1)[0] << endl;
+
+    auto it_linked_begin = linked1->begin();
+    cout << "Iterator begin: " << *(it_linked_begin) << endl;
+    //cout << "Iterator prev begin: " << *(--it_linked_begin) << endl;
+    cout << "Iterator next begin: " << *(++it_linked_begin) << endl;
+    auto it_linked_end = linked1->end();
+    cout << "Iterator end: " << *(it_linked_end) << endl;
+    //cout << "Iterator next end: " << *(++it_linked_end) << endl;
+    cout << "Iterator prev end: " << *(--it_linked_end) << endl;
 
     linked1->sort();
     linked1->print();

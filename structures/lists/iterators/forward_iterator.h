@@ -34,7 +34,8 @@ ForwardIterator<T>::ForwardIterator(Node<T>* current_){
 
 template<typename T>
 ForwardIterator<T> ForwardIterator<T>::operator=(ForwardIterator<T> iterator){
-    iterator.current = current; 
+    current = iterator.current; 
+    return *this;
 }
 
 template<typename T>
@@ -44,8 +45,12 @@ bool ForwardIterator<T>::operator!=(ForwardIterator<T> iterator){
 
 template<typename T>
 ForwardIterator<T> ForwardIterator<T>::operator++(){
+    if(current->next == nullptr){
+        cerr << "There isn't next\n";
+        throw new out_of_range("no next");
+    }
     current = current->next;
-    return 0;
+    return *this;
 }
 
 template<typename T>
