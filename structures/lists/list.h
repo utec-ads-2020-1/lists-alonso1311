@@ -67,8 +67,7 @@ List<T>::List(){
 
 template<typename T>
 List<T>::~List(){
-    delete head;
-    delete tail;
+    head->killSelf();
 }
 
 template<typename T>
