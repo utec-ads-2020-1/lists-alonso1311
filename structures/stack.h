@@ -78,7 +78,7 @@ void stack<T>::pop(){
         cerr << "Can't pop because stack is empty\n";
         throw new out_of_range("empty");
     } else {
-        data[top] = data [top+1];
+        data[top-1] = data [top];
         top--; 
     }
 }

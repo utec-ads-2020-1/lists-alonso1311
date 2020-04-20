@@ -1,5 +1,5 @@
-#include "test/tester.h"
-//#include"structures/stack.h"
+//#include "test/tester.h"
+#include"structures/stack.h"
 //#include"structures/queue.h"
 //#include"structures/lists/linked.h"
 //#include"structures/lists/forward.h"
@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     cout << "\tLists Practice" << endl;
     cout << "===========================================================" << endl << endl;
 
-    Tester::execute();
+    //Tester::execute();
     
     /*    
     //-STACK test
@@ -18,11 +18,27 @@ int main(int argc, char *argv[]) {
     stack1->push(3);
     stack1->push(13);
     stack1->push(10);
+    stack1->print();
+    cout << "Peak: " << stack1->peak() << endl;
+    cout << "Size: " << stack1->size() << endl;
+    cout << endl;
     stack1->pop();
+    stack1->print();
+    cout << "Peak: " << stack1->peak() << endl;
+    cout << "Size: " << stack1->size() << endl;
+    cout << endl;
     stack1->push(6);
+    stack1->print();
+    cout << "Peak: " << stack1->peak() << endl;
+    cout << "Size: " << stack1->size() << endl;
+    cout << endl;
     stack1->pop();
+    stack1->print();
+    cout << "Peak: " << stack1->peak() << endl;
+    cout << "Size: " << stack1->size() << endl;
+    cout << endl;
     stack1->push(100);
-    stack1->push(10);
+    stack1->push(11);
     stack1->print();
     cout << "Peak: " << stack1->peak() << endl;
     cout << "Size: " << stack1->size() << endl;
