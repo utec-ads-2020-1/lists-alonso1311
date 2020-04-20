@@ -1,5 +1,5 @@
-//#include "test/tester.h"
-#include"structures/stack.h"
+#include "test/tester.h"
+//#include"structures/stack.h"
 //#include"structures/queue.h"
 //#include"structures/lists/linked.h"
 //#include"structures/lists/forward.h"
@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     cout << "\tLists Practice" << endl;
     cout << "===========================================================" << endl << endl;
 
-    //Tester::execute();
+    Tester::execute();
     
     /*    
     //-STACK test
