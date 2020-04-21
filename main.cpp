@@ -85,7 +85,11 @@ int main(int argc, char *argv[]) {
     //++it__forward_begin;
     cout << "Iterator next: " << *(++it_forward_begin) << endl;
     auto it_forward_end = forward1->end();
-    cout << "Iterator end: " << *(it_forward_end) << endl;
+    ++it_forward_begin;
+    cout << "Iterator next: " << *(++it_forward_begin) << endl;
+    ++it_forward_begin;
+    cout << "¿it_forward_begin != it_forward_end?: " << (it_forward_begin != it_forward_end) << endl;
+    //cout << "Iterator end: " << *(it_forward_end) << endl;
     ForwardIterator<int> it;
     it = it_forward_begin;
     cout << "Iterator: " << *(it) << endl;
@@ -214,7 +218,6 @@ int main(int argc, char *argv[]) {
     auto* linked1 = new LinkedList<int>();
     linked1->push_back(3);
     linked1->push_back(5);
-    linked1->print();
     linked1->push_front(10);
     linked1->push_front(9);
     linked1->print();
@@ -224,13 +227,14 @@ int main(int argc, char *argv[]) {
 
     auto it_linked_begin = linked1->begin();
     cout << "Iterator begin: " << *(it_linked_begin) << endl;
-    //cout << "Iterator prev begin: " << *(--it_linked_begin) << endl;
     cout << "Iterator next begin: " << *(++it_linked_begin) << endl;
+    cout << "Iterator next next begin: " << *(++it_linked_begin) << endl;
+    cout << "Iterator next next next begin: " << *(++it_linked_begin) << endl;
     auto it_linked_end = linked1->end();
+    --it_linked_end;
     cout << "Iterator end: " << *(it_linked_end) << endl;
     //cout << "Iterator next end: " << *(++it_linked_end) << endl;
     cout << "Iterator prev end: " << *(--it_linked_end) << endl;
-
     linked1->sort();
     linked1->print();
     cout << "Front: " << linked1->front() << endl;

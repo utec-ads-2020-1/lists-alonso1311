@@ -45,7 +45,7 @@ bool ForwardIterator<T>::operator!=(ForwardIterator<T> iterator){
 
 template<typename T>
 ForwardIterator<T> ForwardIterator<T>::operator++(){
-    if(current->next == nullptr){
+    if(current == nullptr){
         cerr << "There isn't next\n";
         throw new out_of_range("no next");
     }

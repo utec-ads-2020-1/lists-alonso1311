@@ -47,20 +47,20 @@ bool BidirectionalIterator<T>::operator!=(BidirectionalIterator<T> iterator){
 
 template<typename T>
 BidirectionalIterator<T> BidirectionalIterator<T>::operator++(){
-    if(current->next == nullptr){
+    /*if(current == nullptr){
         cerr << "There isn't next\n";
         throw new out_of_range("no next");
-    }
+    }*/
     current = current->next;
     return *this;
 }
 
 template<typename T>
 BidirectionalIterator<T> BidirectionalIterator<T>::operator--(){
-    if(current->prev == nullptr){
+    /*if(current == nullptr){
         cerr << "There isn't prev\n";
         throw new out_of_range("no prev");
-    }
+    }*/
     current = current->prev;
     return *this;
 }
