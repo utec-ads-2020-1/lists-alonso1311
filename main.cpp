@@ -231,8 +231,9 @@ int main(int argc, char *argv[]) {
     cout << "Iterator next next begin: " << *(++it_linked_begin) << endl;
     cout << "Iterator next next next begin: " << *(++it_linked_begin) << endl;
     auto it_linked_end = linked1->end();
-    --it_linked_end;
     cout << "Iterator end: " << *(it_linked_end) << endl;
+    --it_linked_end;
+    cout << "Iterator prev end: " << *(it_linked_end) << endl;
     //cout << "Iterator next end: " << *(++it_linked_end) << endl;
     cout << "Iterator prev end: " << *(--it_linked_end) << endl;
     linked1->sort();

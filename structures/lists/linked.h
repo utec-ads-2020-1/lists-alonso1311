@@ -190,10 +190,14 @@ BidirectionalIterator<T> LinkedList<T>::end(){
     if(this->empty()){
         this->show_error(__func__, name());
     } 
+    BidirectionalIterator<T> iterator(this->tail);
+    /*
     //-Last Change
-    //Node<T>* it = this->tail->next;
-    //it->prev = this->tail;
-    BidirectionalIterator<T> iterator(this->tail->next);
+    Node<T>* it = new Node<T>();
+    this->tail->next = it;
+    it->prev = this->tail;
+    BidirectionalIterator<T> iterator(it);
+    */
     return iterator;
 }
 
