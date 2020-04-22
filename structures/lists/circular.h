@@ -192,7 +192,7 @@ BidirectionalIterator<T> CircularLinkedList<T>::end(){
     if(this->empty()){
         this->show_error(__func__, name());
     } 
-    BidirectionalIterator<T> iterator(this->tail); 
+    BidirectionalIterator<T> iterator(this->tail->next); 
     return iterator;
 }
 

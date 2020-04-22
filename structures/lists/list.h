@@ -67,8 +67,23 @@ List<T>::List(){
 
 template<typename T>
 List<T>::~List(){
+    /*Prueba 1
+    tail->next = nullptr;
+    auto temp = head;
+    while(temp->next != nullptr){
+        auto  to_delete = temp;
+        temp = temp->next;
+        delete to_delete;
+    }
+    */
+
+    /*Prueba 2
     tail->next = nullptr;
     head->killSelf();
+    */
+
+    delete head;
+    delete tail;
 }
 
 template<typename T>

@@ -181,7 +181,6 @@ ForwardIterator<T> ForwardList<T>::end(){
     if(this->empty()){
         this->show_error(__func__, name());
     } 
-    //-Last change
     ForwardIterator<T> iterator(this->tail->next);
     return iterator;
 
