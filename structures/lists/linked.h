@@ -7,8 +7,15 @@
 // TODO: Implement all methods
 template <typename T>
 class LinkedList : public List<T> {
+    private:
+        Node<T>* sentinel_end;
+        Node<T>* sentinel_rend;
+
+        //----------------EXTRA FUNCTIONS---------------------
+        void initialize_sentinels();
     public:
         LinkedList();
+        ~LinkedList();
 
         //T front();
         //T back();
@@ -26,6 +33,9 @@ class LinkedList : public List<T> {
         BidirectionalIterator<T> begin();
 	    BidirectionalIterator<T> end();
 
+        BidirectionalIterator<T> rbegin();
+	    BidirectionalIterator<T> rend();
+
         string name();
 
 
@@ -42,35 +52,59 @@ class LinkedList : public List<T> {
         void merge(LinkedList<T>&);
 };
 
+//-----------------------EXTRA FUNCTIONS--------------------------------
 template<typename T>
-LinkedList<T>::LinkedList() : List<T>(){}
+void LinkedList<T>::initialize_sentinels(){
+    sentinel_end->prev = this->tail;
+    sentinel_rend->next = this->head;
+}
+
+//----------------------------------------------------------------------
+template<typename T>
+LinkedList<T>::LinkedList() : List<T>(){
+    sentinel_end = new Node<T>();
+    sentinel_rend = new Node<T>();
+}
+
+template<typename T>
+LinkedList<T>::~LinkedList(){
+    delete sentinel_end;
+    delete sentinel_rend;
+}
 
 template<typename T>
 void LinkedList<T>::push_front(T item){
     auto new_node = new Node<T>(item);
+    new_node->prev = sentinel_rend;
 
     if(this->empty()){
         this->initialize(this->head, this->tail, new_node);
+        new_node->next = sentinel_end;
     } else {
         new_node->next = this->head;
         this->head->prev = new_node;
         this->head = new_node;
     }
-
+    
+    initialize_sentinels();
     this->nodes++;
 }
 
 template<typename T>
 void LinkedList<T>::push_back(T item){
     auto new_node = new Node<T>(item);
+    new_node->next = sentinel_end;
 
     if(this->empty()){
         this->initialize(this->head, this->tail, new_node);
+        new_node->prev = sentinel_rend;
     } else {
         this->tail->next = new_node; 
         new_node->prev = this->tail;
         this->tail = new_node;
     }
+
+    initialize_sentinels();
     this->nodes++;
 }
 
@@ -81,9 +115,10 @@ void LinkedList<T>::pop_front(){
     } else if(!this->empty()) {
         auto temp = this->head;
         this->head = this->head->next;
-        delete temp;
-        this->head->prev = nullptr;
+        this->head->prev = temp->prev;
             
+        delete temp;
+        initialize_sentinels();
         this->nodes--;
     }
 }
@@ -98,6 +133,7 @@ void LinkedList<T>::pop_back(){
         this->tail->next = temp->next;
 
         delete temp;
+        initialize_sentinels();
         this->nodes--;
     }
 }
@@ -138,7 +174,7 @@ void LinkedList<T>::sort(){
         T max;
 
         for(int i = 0; i < this->nodes; ++i){
-            while(temp->next != nullptr){
+            while(temp->next != sentinel_end){
                 if(temp->data > temp->next->data){
                     max = temp->data;
                     temp->data = temp->next->data;
@@ -148,6 +184,7 @@ void LinkedList<T>::sort(){
             }
             temp = this->head;
         }
+        initialize_sentinels();
     }
 }
 
@@ -167,17 +204,18 @@ void LinkedList<T>::reverse(){
         merge(temp);
         */
         auto temp = this->head;
-        Node<T>* temp_next = nullptr, * temp_prev = nullptr;
+        Node<T>* temp_next = sentinel_rend, * temp_prev = sentinel_rend;
 
         do {
             temp_next = temp->next;
             temp->next = temp_prev;
             temp_prev = temp;
             temp = temp_next;
-        } while(temp != nullptr);
+        } while(temp != sentinel_end);
 
         this->tail = this->head;
         this->head = temp_prev;
+        initialize_sentinels();
     }
 }
 
@@ -196,12 +234,25 @@ BidirectionalIterator<T> LinkedList<T>::end(){
     if(this->empty()){
         this->show_error(__func__, name());
     } 
-    //BidirectionalIterator<T> iterator(this->tail->next);
-    //-Last change
-    Node<T>*it = new Node<T>();
-    this->tail->next = it;
-    it->prev = this->tail;
-    BidirectionalIterator<T> iterator(it);
+    BidirectionalIterator<T> iterator(sentinel_end);
+    return iterator;
+}
+
+template<typename T>
+BidirectionalIterator<T> LinkedList<T>::rbegin(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
+    BidirectionalIterator<T> iterator(this->tail);
+    return iterator;
+}
+
+template<typename T>
+BidirectionalIterator<T> LinkedList<T>::rend(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
+    BidirectionalIterator<T> iterator(sentinel_rend);
     return iterator;
 }
 

@@ -3,7 +3,7 @@
 //#include"structures/queue.h"
 //#include"structures/lists/linked.h"
 //#include"structures/lists/forward.h"
-//#include"structures/lists/circular.h"
+#include"structures/lists/circular.h"
 
 int main(int argc, char *argv[]) {
     cout << "===========================================================" << endl;
@@ -145,6 +145,15 @@ int main(int argc, char *argv[]) {
     circular1->push_back(10); 
     circular1->push_front(11); 
     circular1->print();
+
+    auto it_rend = circular1->rend();
+    ++it_rend;
+    cout << "Prueba next rend: " << *it_rend << endl;
+
+    auto it_end = circular1->end();
+    --it_end;
+    cout << "Prueba prev end: " << *it_end << endl;
+
     cout << "Front: " << circular1->front() << endl;
     cout << "Back: " << circular1->back() << endl;
     cout << "Index[4]: " << (*circular1)[4] << endl;
@@ -224,13 +233,26 @@ int main(int argc, char *argv[]) {
     cout << "Front: " << linked1->front() << endl;
     cout << "Back: " << linked1->back() << endl;
     cout << "Index[0]: " << (*linked1)[0] << endl;
-
     auto it = linked1->end();
     --it;
+    cout << "Prueba de prev end: " << *it << endl;
 
-    for(; it != linked1->begin(); --it){
-        cout << *it << "->";
+    auto it_rend = linked1->rend();
+    ++it_rend;
+    cout << "Prueba de next rend: " << *it_rend << endl;
+
+    linked1->sort();
+    linked1->print();
+
+    for(; it != linked1->rend(); --it){
+        cout << *it << " -> ";
     }
+    cout << endl;
+
+    for(; it_rend != linked1->end(); ++it_rend){
+        cout << *it_rend << " -> ";
+    }
+    cout << endl;
 
     auto it_linked_begin = linked1->begin();
     cout << "Iterator begin: " << *(it_linked_begin) << endl;

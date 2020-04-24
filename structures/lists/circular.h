@@ -7,8 +7,16 @@
 // TODO: Implement all methods
 template <typename T>
 class CircularLinkedList : public List<T> {
+    private:
+        Node<T>* sentinel_end;
+        Node<T>* sentinel_rend;
+
+        //-----------------EXTRA FUNCTIONS----------------------------
+        void initialize_sentinels();
+
     public:
         CircularLinkedList();
+        ~CircularLinkedList();
 
         //T front();
         //T back();
@@ -26,6 +34,9 @@ class CircularLinkedList : public List<T> {
         BidirectionalIterator<T> begin();
 	    BidirectionalIterator<T> end();
 
+        BidirectionalIterator<T> rbegin();
+	    BidirectionalIterator<T> rend();
+
         string name() override;
 
         /**
@@ -41,8 +52,25 @@ class CircularLinkedList : public List<T> {
         void merge(CircularLinkedList<T>&);
 };
 
+
+//------------------------EXTRA FUNCTIONS---------------------------------
 template<typename T>
-CircularLinkedList<T>::CircularLinkedList() : List<T>(){}
+void CircularLinkedList<T>::initialize_sentinels(){
+    sentinel_end->prev = this->tail;
+    sentinel_rend->next = this->head;
+}
+
+template<typename T>
+CircularLinkedList<T>::CircularLinkedList() : List<T>(){
+    sentinel_end = new Node<T>();
+    sentinel_rend = new Node<T>();
+}
+
+template<typename T>
+CircularLinkedList<T>::~CircularLinkedList(){
+    delete sentinel_end;
+    delete sentinel_rend;
+}
 
 template<typename T>
 void CircularLinkedList<T>::push_front(T item){
@@ -60,6 +88,7 @@ void CircularLinkedList<T>::push_front(T item){
     }
 
     this->tail->next = this->head;
+    initialize_sentinels();
     this->nodes++;
 }
 
@@ -79,6 +108,7 @@ void CircularLinkedList<T>::push_back(T item){
     }
     
     this->head->prev = this->tail;
+    initialize_sentinels();
     this->nodes++;
 }
 
@@ -89,10 +119,11 @@ void CircularLinkedList<T>::pop_front(){
     } else if(!this->empty()){
         auto temp = this->head;
         this->head = this->head->next;
-        delete temp;
         this->head->prev = this->tail;
-
         this->tail->next = this->head;
+
+        delete temp;
+        initialize_sentinels();
         this->nodes--;
     }
 }
@@ -104,9 +135,11 @@ void CircularLinkedList<T>::pop_back(){
     } else if(!this->empty()){
         auto temp = this->tail;
         this->tail = this->tail->prev;
-        this->tail->next = temp->next;
+        this->tail->next = this->head;
+        this->head->prev = this->tail;
 
         delete temp;
+        initialize_sentinels();
         this->nodes--;
     }
 
@@ -149,6 +182,7 @@ void CircularLinkedList<T>::sort(){
             }
             temp = this->head;
         } 
+        initialize_sentinels();
     }
 }
 
@@ -180,6 +214,8 @@ void CircularLinkedList<T>::reverse(){
 
         this->tail = this->head;
         this->head = temp_prev;
+
+        initialize_sentinels();
     }
 }
 
@@ -198,7 +234,26 @@ BidirectionalIterator<T> CircularLinkedList<T>::end(){
     if(this->empty()){
         this->show_error(__func__, name());
     } 
-    BidirectionalIterator<T> iterator(this->tail->next); 
+    //BidirectionalIterator<T> iterator(this->tail->next); 
+    BidirectionalIterator<T> iterator(sentinel_end); 
+    return iterator;
+}
+
+template<typename T>
+BidirectionalIterator<T> CircularLinkedList<T>::rbegin(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
+    BidirectionalIterator<T> iterator(this->tail); 
+    return iterator;
+}
+
+template<typename T>
+BidirectionalIterator<T> CircularLinkedList<T>::rend(){
+    if(this->empty()){
+        this->show_error(__func__, name());
+    } 
+    BidirectionalIterator<T> iterator(sentinel_rend); 
     return iterator;
 }
 
