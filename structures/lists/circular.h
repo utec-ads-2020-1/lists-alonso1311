@@ -201,6 +201,7 @@ void CircularLinkedList<T>::reverse(){
 
         this->clear();
         merge(temp);
+        initialize_sentinels();
         */
         auto temp = this->head;
         Node<T>* temp_next = nullptr, * temp_prev = nullptr;

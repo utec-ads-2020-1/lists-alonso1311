@@ -198,10 +198,11 @@ void LinkedList<T>::reverse(){
         do {
             temp.push_back(left_temp->data);
             left_temp = left_temp->prev;
-        } while(left_temp != nullptr);
+        } while(left_temp != sentinel_end);
 
         this->clear();
         merge(temp);
+        initialize_sentinels();
         */
         auto temp = this->head;
         Node<T>* temp_next = sentinel_rend, * temp_prev = sentinel_rend;
