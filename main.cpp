@@ -225,6 +225,13 @@ int main(int argc, char *argv[]) {
     cout << "Back: " << linked1->back() << endl;
     cout << "Index[0]: " << (*linked1)[0] << endl;
 
+    auto it = linked1->end();
+    --it;
+
+    for(; it != linked1->begin(); --it){
+        cout << *it << "->";
+    }
+
     auto it_linked_begin = linked1->begin();
     cout << "Iterator begin: " << *(it_linked_begin) << endl;
     cout << "Iterator next begin: " << *(++it_linked_begin) << endl;
