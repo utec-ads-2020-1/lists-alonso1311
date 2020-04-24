@@ -74,10 +74,7 @@ void queue<T>::push(T item){
 }
 template<typename T>
 void queue<T>::pop(){
-    if(empty()){
-        cerr << "Can't pop because queue is empty\n";
-        throw new out_of_range("empty");
-    } else{
+    if(!empty()){
         for(int i = 0; i < top; ++i)
             data[i] = data[i+1];
 
@@ -119,10 +116,7 @@ bool queue<T>::empty(){
 //----------------EXTRA FUNCTIONS------------------------------------
 template<typename T>
 void queue<T>::print(){
-    if(empty()){
-        cerr << "Can't print because queue is empty\n";
-        throw new out_of_range("empty");
-    } else {
+    if(!empty()){
         for(int i = 0; i < top; ++i)
             cout << data[i] << endl;
     }

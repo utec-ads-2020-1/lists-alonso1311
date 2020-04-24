@@ -76,11 +76,9 @@ void LinkedList<T>::push_back(T item){
 
 template<typename T>
 void LinkedList<T>::pop_front(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else if(this->nodes == 1){
+    if(this->nodes == 1){
         this->clear();
-    } else {
+    } else if(!this->empty()) {
         auto temp = this->head;
         this->head = this->head->next;
         delete temp;
@@ -92,11 +90,9 @@ void LinkedList<T>::pop_front(){
 
 template<typename T>
 void LinkedList<T>::pop_back(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else if(this->nodes == 1){
+    if(this->nodes == 1){
         this->clear();
-    } else {
+    } else if(!this->empty()) {
         auto temp = this->tail;
         this->tail = this->tail->prev;
         this->tail->next = temp->next;
@@ -137,9 +133,7 @@ T LinkedList<T>::operator[](int index){
 
 template<typename T>
 void LinkedList<T>::sort(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else {
+    if(!this->empty()){
         auto temp = this->head;
         T max;
 
@@ -159,9 +153,8 @@ void LinkedList<T>::sort(){
 
 template<typename T>
 void LinkedList<T>::reverse(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else {
+    if(!this->empty()){
+        /*
         LinkedList<T> temp;
         auto left_temp = this->tail; 
 
@@ -172,6 +165,19 @@ void LinkedList<T>::reverse(){
 
         this->clear();
         merge(temp);
+        */
+        auto temp = this->head;
+        Node<T>* temp_next = nullptr, * temp_prev = nullptr;
+
+        do {
+            temp_next = temp->next;
+            temp->next = temp_prev;
+            temp_prev = temp;
+            temp = temp_next;
+        } while(temp != nullptr);
+
+        this->tail = this->head;
+        this->head = temp_prev;
     }
 }
 

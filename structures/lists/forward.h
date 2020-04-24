@@ -74,11 +74,9 @@ void ForwardList<T>::push_back(T item){
 
 template<typename T>
 void ForwardList<T>::pop_front(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else if(this->nodes == 1){
+    if(this->nodes == 1){
         this->clear();
-    } else {
+    } else if(!this->empty()){
         auto temp = this->head; 
         this->head = this->head->next;
         delete temp;
@@ -89,11 +87,9 @@ void ForwardList<T>::pop_front(){
 
 template<typename T>
 void ForwardList<T>::pop_back(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else if(this->nodes == 1){
+    if(this->nodes == 1){
         this->clear();
-    } else {
+    } else if(!this->empty()) {
         auto temp = this->head; 
         while(temp->next != this->tail){
             temp = temp->next;
@@ -126,9 +122,7 @@ T ForwardList<T>::operator[](int index){
 
 template<typename T>
 void ForwardList<T>::sort(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else {
+    if(!this->empty()){
         auto temp = this->head;
         T max;
 
@@ -148,9 +142,7 @@ void ForwardList<T>::sort(){
 
 template<typename T>
 void ForwardList<T>::reverse(){
-    if(this->empty()){
-        this->show_error(__func__, name());
-    } else {
+    if(!this->empty()){
         auto temp = this->head;    
         Node<T>* temp_next = nullptr,* temp_prev = nullptr;
 

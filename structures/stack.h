@@ -74,10 +74,7 @@ void stack<T>::push(T item){
 
 template<typename T>
 void stack<T>::pop(){
-    if(empty()){
-        cerr << "Can't pop because stack is empty\n";
-        throw new out_of_range("empty");
-    } else {
+    if(!empty()){
         data[top-1] = data [top];
         top--; 
     }
@@ -101,19 +98,13 @@ int stack<T>::size(){
 
 template<typename T>
 bool stack<T>::empty(){
-    if(top == 0)
-        return true;
-
-    return false;
+    return (top == 0);
 }
 
 //--------------EXTRA FUNCTIONS------------------------
 template<typename T>
 void stack<T>::print(){
-    if(empty()){
-        cerr << "Can't print because stack is empty\n";
-        throw new out_of_range("empty");
-    } else {
+    if(!empty()){
         for(int i = top-1; i >= 0; --i)
             cout << data[i] << endl;
     }

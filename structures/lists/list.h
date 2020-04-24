@@ -67,7 +67,7 @@ List<T>::List(){
 
 template<typename T>
 List<T>::~List(){
-    /*Prueba 1
+    //Prueba 1
     tail->next = nullptr;
     auto temp = head;
     while(temp->next != nullptr){
@@ -75,15 +75,16 @@ List<T>::~List(){
         temp = temp->next;
         delete to_delete;
     }
-    */
-
+    
     /*Prueba 2
     tail->next = nullptr;
     head->killSelf();
     */
-
+    
+    /*
     delete head;
     delete tail;
+    */
 }
 
 template<typename T>
@@ -114,9 +115,7 @@ int List<T>::size(){
 
 template<typename T>
 void List<T>::clear(){
-    if(empty()){
-        show_error(__func__, name());
-    } else {
+    if(!empty()){
         tail->next = nullptr;
         head->killSelf();
         initialize_constructor();
@@ -126,16 +125,12 @@ void List<T>::clear(){
 //---------------------EXTRA FUNCTIONS-------------------------------------------
 template<typename T>
 void List<T>::print(){
-    if(empty()){
-        show_error(__func__, name());
-    } else {
         auto temp = head;
         for(int i = 0; i < nodes; ++i){
             cout << temp->data << " -> "; 
             temp = temp->next;
         }
     cout << endl;
-    }
 }
 
 #endif
