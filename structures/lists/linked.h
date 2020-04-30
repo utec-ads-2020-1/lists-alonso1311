@@ -273,6 +273,7 @@ void LinkedList<T>::merge(LinkedList<T>& new_LinkedList){
         auto new_temp = new_LinkedList.head;
 
         for(int i = 0; i < new_LinkedList.nodes; ++i){
+            // No era la idea
             push_back(new_temp->data);     
             new_temp = new_temp->next;
         }

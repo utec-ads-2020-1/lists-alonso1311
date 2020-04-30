@@ -67,6 +67,7 @@ BidirectionalIterator<T> BidirectionalIterator<T>::operator--(){
 
 template<typename T>
 T BidirectionalIterator<T>::operator*(){
+    // Si current es null?
     return current->data;
 }
 
